@@ -1,0 +1,221 @@
+/**
+ Dirty table work that saves a lot of markup
+ */
+.mc--clean-table-item {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    border-collapse: collapse;
+    outline: 0;
+    font-size: 100%;
+    background: transparent;
+}
+.mc--table {
+    table-layout: fixed;
+    width: 100%;
+}
+.mc--table th {
+    padding: 0px;
+    vertical-align: middle;
+}
+.mc--table .mc--th-selected {
+    height: 35px;
+}
+.mc--table td {
+    padding-bottom: 5px;
+    padding-top: 6px;
+}
+.mc--table th,
+.mc--table td {
+    table-layout: fixed;
+}
+.mc--table th:nth-child(1),
+.mc--table td:nth-child(1) {
+    width: 32px;
+}
+.mc--table th:nth-child(2),
+.mc--table td:nth-child(2) {
+    width: 40px;
+}
+.mc--table th:nth-child(3),
+.mc--table td:nth-child(3) {
+    width: 50px;
+}
+.mc--table th:nth-child(5),
+.mc--table td:nth-child(5),
+.mc--table th:nth-child(6),
+.mc--table td:nth-child(6),
+.mc--table th:nth-child(7),
+.mc--table td:nth-child(7){
+    width: 50px;
+}
+.mc--table th:nth-child(8),
+.mc--table td:nth-child(8) {
+    width: 70px;
+}
+
+
+/**
+ Text
+ */
+.mc--sans-font {
+    font-family: Gill Sans Extrabold, sans-serif;
+}
+.mc--text-size-1-1 {
+    font-size: 1.1rem;
+}
+.mc--text-lighter {
+    font-weight: lighter;
+}
+.mc--text-bold {
+    font-weight: bold;
+}
+.mc--text-space-neg-0-5 {
+    letter-spacing: -0.05rem;
+}
+.mc--text-grey {
+    color: #8a8b8d;
+}
+.mc--text-dark-grey {
+    color: #5e5e5e;
+}
+.mc--text-upper {
+    text-transform: uppercase;
+}
+.mc--text-center {
+    text-align: center;
+}
+.mc--vert-align-middle {
+    vertical-align: middle;
+}
+
+
+/**
+ Spacing
+ */
+.mc--margin-top-5 {
+    margin-top: 5px;
+}
+.mc--margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.mc--padding-5 {
+    padding: 5px;
+}
+.mc--padding-vert-5 {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.mc--padding-top-3 {
+    padding-top: 3px;
+}
+
+/**
+ Borders
+ */
+.mc--border-grey {
+    border-color: #5e5e5e;
+}
+.mc--border-light-grey {
+    border-color: #e7e8ea;
+}
+.mc--border-thick {
+    border-width: 2px;
+}
+.mc--border-thin {
+    border-width: 1px;
+}
+.mc--border-top {
+    border-top-style: solid;
+}
+.mc--border-bottom {
+    border-bottom-style: solid;
+}
+
+/**
+ Buttons
+ */
+.mc--bg-none {
+    background: none;
+}
+.mc--bg-gold {
+    background-color: #f3d256;
+}
+.mc--bg-silver {
+    background-color: #9ba5ac;
+}
+.mc--bg-bronze {
+    background-color: #7f532c;
+}
+.mc--circle {
+    border-radius: 50%;
+    overflow: hidden;
+}
+.mc--clean-button {
+    height: 20px;
+    padding: 0px;
+    cursor: pointer;
+    border: none;
+}
+.mc--clean-button:focus,
+.mc--clean-button:active {
+    outline: none;
+}
+.mc--circle-button {
+    height: 20px;
+    width: 20px;
+}
+
+/**
+ Flags
+ */
+.mc--flag {
+    background: url(//s3-us-west-2.amazonaws.com/reuters.medals-widget/flags.png) no-repeat;
+    background-position-x: 0px;
+    display: inline-block;
+    height: 17px;
+    width: 28px;
+}
+.mc--flag-aut {
+    background-position-y: 0px;
+}
+.mc--flag-blr {
+    background-position-y: calc(-17px * 1);
+}
+.mc--flag-can {
+    background-position-y: calc(-17px * 2);
+}
+.mc--flag-chn {
+    background-position-y: calc(-17px * 3);
+}
+.mc--flag-fra {
+    background-position-y: calc(-17px * 4);
+}
+.mc--flag-ger {
+    background-position-y: calc(-17px * 5);
+}
+.mc--flag-ita {
+    background-position-y: calc(-17px * 6);
+}
+.mc--flag-ned {
+    background-position-y: calc(-17px * 7);
+}
+.mc--flag-nor {
+    background-position-y: calc(-17px * 8);
+}
+.mc--flag-rus {
+    background-position-y: calc(-17px * 9);
+}
+.mc--flag-sui {
+    background-position-y: calc(-17px * 10);
+}
+.mc--flag-swe {
+    background-position-y: calc(-17px * 11);
+}
+.mc--flag-usa {
+    background-position-y: calc(-17px * 12);
+}
+
+

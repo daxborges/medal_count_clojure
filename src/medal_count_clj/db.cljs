@@ -18,12 +18,11 @@
                      ))
 
 ;; Sort By
-(s/def ::sort-by
-  #{:total
-    :gold
-    :silver
-    :bronze
-    })
+(s/def ::sort-by #{:total
+                   :gold
+                   :silver
+                   :bronze
+                   })
 
 ;; DB Main
 (s/def ::db (s/keys :req-un [::countries ::sort-by]))
@@ -32,4 +31,24 @@
 ;;
 (def default-db
   {:countries (sorted-map)
-   :sort-by :total})
+   :sort-by :gold})
+
+
+;; -- Local Storage  ----------------------------------------------------------
+(def countries-ls-key "countries-medal-count")                         ;; localstore key
+
+(defn countries->local-store
+  "Puts countries into localStorage"
+  [countries]
+  (.setItem js/localStorage countries-ls-key (str countries)))     ;; sorted-map writen as an EDN map
+
+
+;; -- cofx Registrations  -----------------------------------------------------
+(re-frame/reg-cofx
+  :local-store-countries
+  (fn [cofx _]
+    ;; put the localstore todos into the coeffect, under key :local-store-todos
+    (assoc cofx :local-store-countries   ;; read in todos from localstore, and process into a sorted map
+                (into (sorted-map)
+                      (some->> (.getItem js/localStorage countries-ls-key)
+                               (cljs.reader/read-string))))))       ;; stored as an EDN map.
