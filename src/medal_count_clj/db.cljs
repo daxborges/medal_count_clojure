@@ -3,7 +3,11 @@
             [cljs.spec :as s]
             [re-frame.core :as re-frame]))
 
-
+(def sort-types #{:total
+                  :gold
+                  :silver
+                  :bronze
+                  })
 ;; -- Spec --------------------------------------------------------------------
 
 ;; Countries
@@ -18,11 +22,7 @@
                      ))
 
 ;; Sort By
-(s/def ::sort-by #{:total
-                   :gold
-                   :silver
-                   :bronze
-                   })
+(s/def ::sort-by sort-types)
 
 ;; DB Main
 (s/def ::db (s/keys :req-un [::countries ::sort-by]))

@@ -24,21 +24,21 @@
      [:th {:class (str all-classes " " (render-select-class :gold srt-by))}
       [:button {:class (str "mc--bg-gold" " " circle-button-classes)
                 :title "gold"
-                :on-click #(dispatch [:change-sort :gold])}]]
+                :on-click #(dispatch [:set-sort :gold])}]]
 
      [:th {:class (str all-classes " " (render-select-class :silver srt-by))}
       [:button {:class (str "mc--bg-silver" " " circle-button-classes)
                 :title "silver"
-                :on-click #(dispatch [:change-sort :silver])}]]
+                :on-click #(dispatch [:set-sort :silver])}]]
 
      [:th {:class (str all-classes " " (render-select-class :bronze srt-by))}
       [:button {:class (str "mc--bg-bronze" " " circle-button-classes)
                 :title "bronze"
-                :on-click #(dispatch [:change-sort :bronze])}]]
+                :on-click #(dispatch [:set-sort :bronze])}]]
 
      [:th {:class (str all-classes " " (render-select-class :total srt-by))}
       [:button {:class "mc--clean-button mc--bg-none mc--text-upper mc--text-dark-grey mc--text-size-1-1 mc--text-space-neg-0-5 mc--line-height-20 mc--vert-align-middle"
-                :on-click #(dispatch [:change-sort :total])}
+                :on-click #(dispatch [:set-sort :total])}
        "TOTAL"]]
      ]]))
 

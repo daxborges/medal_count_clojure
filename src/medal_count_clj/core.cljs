@@ -1,13 +1,13 @@
 (ns medal-count-clj.core
-  (:require-macros [secretary.core :refer [defroute]])
-  (:require [goog.events :as events]
+  (:require [bidi.bidi :as bidi]
+            [devtools.core :as devtools]
+            [goog.events :as events]
             [reagent.core :as reagent]
             [re-frame.core :refer [dispatch dispatch-sync]]
-            [secretary.core :as secretary]
+            [medal-count-clj.routes :refer [app-routes]]
             [medal-count-clj.events] ;; These two are only required to make the compiler
             [medal-count-clj.subs]   ;; load them (see docs/Basic-App-Structure.md)
-            [medal-count-clj.views]
-            [devtools.core :as devtools])
+            [medal-count-clj.views])
   (:import [goog History]
            [goog.history EventType]))
 
@@ -16,20 +16,27 @@
 (enable-console-print!)   ;; so that println writes to `console.log`
 
 ;; -- Routes and History ------------------------------------------------------
-;; Although we use the secretary library below, that's mostly a historical
-;; accident. You might also consider using:
-;;   - https://github.com/DomKM/silk
-;;   - https://github.com/juxt/bidi
-;; We don't have a strong opinion.
-;;
-;(defroute "/" [] (dispatch [:set-showing :all]))
-;(defroute "/:filter" [filter] (dispatch [:set-showing (keyword filter)]))
-;
-;(def history
-;  (doto (History.)
-;    (events/listen EventType.NAVIGATE
-;                   (fn [event] (secretary/dispatch! (.-token event))))
-;    (.setEnabled true)))
+(defn- dispatch-route [match]
+  (case (:handler match)
+    nil ()
+    :index (dispatch [:set-sort :gold])
+    :sort-by (dispatch [:set-sort (keyword (-> match :route-params :sort-type))])))
+
+
+(def history
+  (doto (History.)
+    (events/listen EventType.NAVIGATE
+                   (fn [event]
+                     (let [path (.-token event)
+                           match (bidi/match-route app-routes path)]
+                       (.log js/console event)
+                       (.log js/console "path =>" path)
+                       (.log js/console "match =>" match)
+                       (dispatch-route match)
+                     )))
+    (.setEnabled true)))
+
+
 
 ;; -- Entry Point -------------------------------------------------------------
 ;; Within ../../resources/public/index.html you'll see this code

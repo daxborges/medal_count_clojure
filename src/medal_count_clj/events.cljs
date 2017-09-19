@@ -1,11 +1,13 @@
 (ns medal-count-clj.events
   (:require
-    [medal-count-clj.db :refer [default-db countries->local-store]]
-    [re-frame.core :refer [reg-event-db reg-event-fx inject-cofx path trim-v
-                           after debug]]
-    [day8.re-frame.http-fx]
     [ajax.core :as ajax]
-    [cljs.spec     :as s]))
+    [bidi.bidi :as bidi]
+    [cljs.spec     :as s]
+    [day8.re-frame.http-fx]
+    [re-frame.core :refer [reg-event-db reg-event-fx inject-cofx path trim-v
+                           after debug ->interceptor]]
+    [medal-count-clj.db :refer [sort-types default-db countries->local-store]]
+    [medal-count-clj.routes :as routes]))
 
 ;; -- Interceptors --------------------------------------------------------------
 (defn check-and-throw
@@ -27,6 +29,12 @@
                         (when ^boolean js/goog.DEBUG debug)  ;; look at the js browser console for debug logs
                         trim-v])
 
+(defn navigate-path
+  [path-name event-map]
+  (->interceptor
+    :id      :navigate-path
+    :after  (fn [context]
+               (routes/path-for path-name ))))
 
 ;; xhrio info for getting the countries JSON
 (def countries-xhrio {:method          :get
@@ -56,12 +64,14 @@
     ))
 
 (reg-event-db
-  :change-sort
+  :set-sort
 
   [check-spec-interceptor (path :sort-by)]
 
-  (fn [_ [_ new-sort]]
-    new-sort))
+  (fn [sort [_ new-sort]]
+    (if (nil? (get sort-types new-sort))
+      sort
+      new-sort)))
 
 
 ;; Init the DB
