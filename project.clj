@@ -51,7 +51,7 @@
                                 :compiler     {:output-dir "resources/public/js"
                                                :output-to  "resources/public/js/client.js"}}
                        :test {:source-paths ["src" "test"]
-                              :compiler {:output-dir "resources/public/js"
+                              :compiler {:output-dir "resources/public/js/test"
                                          :output-to  "resources/public/js/client-test.js"
                                          ;:main 'lab-notebook.browser
                                          ;:optimizations :none
